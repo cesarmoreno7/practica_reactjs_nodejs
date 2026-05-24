@@ -86,8 +86,8 @@ Se creó el workflow:
 
 Disparadores configurados:
 
-- push a ramas main, develop o qa
-- pull request hacia ramas main, develop o qa
+- push a ramas main, preprod, develop o qa
+- pull request hacia ramas main, preprod, develop o qa
 - ejecucion manual desde la pestaña Actions (`workflow_dispatch`)
 
 El pipeline realiza:
