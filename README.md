@@ -128,6 +128,7 @@ Se agregó un flujo de CD en `.github/workflows/cd-container.yml` que construye 
 
 Ramas con despliegue de imagen:
 
+- `qa` publica tag `qa`
 - `preprod` publica tag `preprod`
 - `main` publica tag `latest`
 - ambas publican un tag por hash corto (`sha`)
@@ -148,15 +149,18 @@ Variables de entorno necesarias para ejecutar el contenedor:
 
 Despliegue automático recomendado en herramienta gratuita (Render):
 
-1. Crear dos servicios Web en Render usando imagen de GHCR:
+1. Crear tres servicios Web en Render usando imagen de GHCR:
+	- qa: `ghcr.io/cesarmoreno7/practica_reactjs_nodejs:qa`
 	- preprod: `ghcr.io/cesarmoreno7/practica_reactjs_nodejs:preprod`
 	- prod: `ghcr.io/cesarmoreno7/practica_reactjs_nodejs:latest`
 2. En cada servicio, configurar variables de entorno de aplicación y base de datos.
 3. Copiar Deploy Hook URL de cada servicio.
 4. En GitHub, crear estos Secrets del repositorio:
+	- `RENDER_DEPLOY_HOOK_QA`
 	- `RENDER_DEPLOY_HOOK_PREPROD`
 	- `RENDER_DEPLOY_HOOK_MAIN`
 5. El workflow `.github/workflows/cd-container.yml` ya dispara deploy automático:
+	- push a `qa` -> build + push de imagen + deploy en servicio QA
 	- push a `preprod` -> build + push de imagen + deploy en servicio preprod
 	- push a `main` -> build + push de imagen + deploy en servicio productivo
 
