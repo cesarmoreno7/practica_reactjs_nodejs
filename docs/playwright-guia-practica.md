@@ -102,3 +102,20 @@ Artefactos esperados:
 - playwright-html-report
 - playwright-step-report
 - playwright-test-results
+
+## 10) Flujo recomendado de promociones
+
+Secuencia de ramas para cambios funcionales:
+
+1. develop (desarrollo y ajuste)
+2. qa (validacion funcional)
+3. preprod (validacion final previa)
+4. main (entrega)
+
+Comandos base del flujo:
+
+1. `git switch develop`
+2. realizar cambios + commit + `git push origin develop`
+3. `git switch qa && git merge --ff-only develop && git push origin qa`
+4. `git switch preprod && git merge --ff-only qa && git push origin preprod`
+5. `git switch main && git merge --ff-only preprod && git push origin main`
