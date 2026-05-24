@@ -31,7 +31,7 @@ Marcar:
 
 - Gitflow Guard / validate-flow
 - Playwright E2E / e2e
-- CD Container / build-and-push (solo para qa y main)
+- CD Container / build-and-push (solo para qa, preprod y main)
 
 ## 4) Politica de merges sugerida
 

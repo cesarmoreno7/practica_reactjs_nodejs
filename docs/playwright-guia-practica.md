@@ -128,13 +128,14 @@ Para trabajo colaborativo de varios aprendices sobre el mismo artefacto, usar la
 
 Para construir contenedor sin Docker Desktop local:
 
-1. Hacer push a `qa` o `main`.
+1. Hacer push a `qa`, `preprod` o `main`.
 2. GitHub Actions ejecuta `.github/workflows/cd-container.yml`.
 3. La imagen se publica en GHCR con tags por rama y por commit.
 
 Tags de publicación:
 
 - rama `qa` -> tag `qa`
+- rama `preprod` -> tag `preprod`
 - rama `main` -> tag `latest`
 - ambas ramas -> tag `sha-<commit>`
 
@@ -164,14 +165,18 @@ Variables mínimas para ejecutar la app en contenedor:
 1. Crear cuenta en Render (plan free).
 2. Crear servicio `qa` desde imagen GHCR:
 	- `ghcr.io/cesarmoreno7/practica_reactjs_nodejs:qa`
-3. Crear servicio `main` desde imagen GHCR:
+3. Crear servicio `preprod` desde imagen GHCR:
+	- `ghcr.io/cesarmoreno7/practica_reactjs_nodejs:preprod`
+4. Crear servicio `main` desde imagen GHCR:
 	- `ghcr.io/cesarmoreno7/practica_reactjs_nodejs:latest`
-4. Configurar variables de entorno en ambos servicios.
-5. Copiar Deploy Hook URL de cada servicio (Settings -> Deploy Hook).
-6. En GitHub -> Settings -> Secrets and variables -> Actions, crear:
+5. Configurar variables de entorno en los tres servicios.
+6. Copiar Deploy Hook URL de cada servicio (Settings -> Deploy Hook).
+7. En GitHub -> Settings -> Secrets and variables -> Actions, crear:
 	- `RENDER_DEPLOY_HOOK_QA`
+	- `RENDER_DEPLOY_HOOK_PREPROD`
 	- `RENDER_DEPLOY_HOOK_MAIN`
-7. Hacer push a `qa` y validar despliegue automático en servicio de QA.
-8. Promover a `main` y validar despliegue automático en servicio productivo.
+8. Hacer push a `qa` y validar despliegue automático en servicio de QA.
+9. Hacer push a `preprod` y validar despliegue automático en servicio de preproducción.
+10. Promover a `main` y validar despliegue automático en servicio productivo.
 
 Nota: el workflow `.github/workflows/cd-container.yml` ya incluye el disparo automático por Deploy Hook para ambos ambientes.

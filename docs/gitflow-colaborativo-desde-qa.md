@@ -65,11 +65,11 @@ Cuando develop queda estable:
 1. Crear PR: develop -> qa
 2. Validar en QA (funcional + reportes Playwright + deploy automático en Render si está configurado)
 3. Si aprueba QA, crear PR: qa -> preprod
-4. Validar smoke final en preprod
+4. Validar smoke final en preprod (también puede desplegar automáticamente en Render si está configurado)
 5. Si aprueba preprod, crear PR: preprod -> main
 6. Crear tag de version en main (ejemplo v1.0.0)
 
-Nota: en la configuración actual, Render despliega automáticamente desde `qa` y `main`. La rama `preprod` se mantiene como etapa de control funcional previa a la entrega final.
+Nota: en la configuración actual, Render puede desplegar automáticamente desde `qa`, `preprod` y `main` mediante Deploy Hooks independientes.
 
 ## 5) Checklist de aprobacion por etapa
 
