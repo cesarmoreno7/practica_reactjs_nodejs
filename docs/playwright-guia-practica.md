@@ -119,3 +119,38 @@ Comandos base del flujo:
 3. `git switch qa && git merge --ff-only develop && git push origin qa`
 4. `git switch preprod && git merge --ff-only qa && git push origin preprod`
 5. `git switch main && git merge --ff-only preprod && git push origin main`
+
+## 11) CD cloud sin Docker local
+
+Para construir contenedor sin Docker Desktop local:
+
+1. Hacer push a `preprod` o `main`.
+2. GitHub Actions ejecuta `.github/workflows/cd-container.yml`.
+3. La imagen se publica en GHCR con tags por rama y por commit.
+
+Tags de publicación:
+
+- rama `preprod` -> tag `preprod`
+- rama `main` -> tag `latest`
+- ambas ramas -> tag `sha-<commit>`
+
+Referencia de imagen:
+
+- `ghcr.io/cesarmoreno7/practica_reactjs_nodejs`
+
+Opciones de despliegue web/cloud recomendadas:
+
+- Render (Docker Image)
+- Railway (Deploy from image)
+- Fly.io (deploy desde GHCR)
+- Azure Container Apps / AWS App Runner
+
+Variables mínimas para ejecutar la app en contenedor:
+
+- `PORT=3000`
+- `MYSQL_HOST`
+- `MYSQL_DATABASE`
+- `MYSQL_USER`
+- `MYSQL_PASSWORD`
+- `JWT_SECRET`
+- `JWT_EXPIRES_IN=24h`

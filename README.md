@@ -119,6 +119,30 @@ Artefactos generados en cada ejecución:
 - `playwright-step-report`
 - `playwright-test-results`
 
+### 8. CD Docker sin entorno local
+
+Se agregó un flujo de CD en `.github/workflows/cd-container.yml` que construye y publica la imagen Docker en GitHub Container Registry (GHCR) usando runners de GitHub (sin Docker Desktop local).
+
+Ramas con despliegue de imagen:
+
+- `preprod` publica tag `preprod`
+- `main` publica tag `latest`
+- ambas publican un tag por hash corto (`sha`)
+
+Imagen resultante:
+
+- `ghcr.io/cesarmoreno7/practica_reactjs_nodejs`
+
+Variables de entorno necesarias para ejecutar el contenedor:
+
+- `PORT` (ejemplo: `3000`)
+- `MYSQL_HOST`
+- `MYSQL_DATABASE`
+- `MYSQL_USER`
+- `MYSQL_PASSWORD`
+- `JWT_SECRET`
+- `JWT_EXPIRES_IN`
+
 ## JWT y autenticación
 
 - `POST /api/usuario/authenticate` recibe `{ codigo_usu, clave }` y retorna `{ user, token }`.
