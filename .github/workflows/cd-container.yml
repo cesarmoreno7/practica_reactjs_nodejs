@@ -2,7 +2,7 @@ name: CD Container
 
 on:
   push:
-    branches: [ qa, main ]
+    branches: [ qa, preprod, main ]
   workflow_dispatch:
 
 permissions:
@@ -42,6 +42,7 @@ jobs:
           tags: |
             type=raw,value=latest,enable=${{ github.ref_name == 'main' }}
             type=raw,value=qa,enable=${{ github.ref_name == 'qa' }}
+            type=raw,value=preprod,enable=${{ github.ref_name == 'preprod' }}
             type=sha,format=short
 
       - name: Build and push image
@@ -64,6 +65,17 @@ jobs:
             curl -fsS -X POST "$RENDER_DEPLOY_HOOK_QA"
           else
             echo "Secret RENDER_DEPLOY_HOOK_QA no configurado; se omite deploy automático."
+          fi
+
+      - name: Trigger Render deploy (preprod)
+        if: github.ref_name == 'preprod'
+        env:
+          RENDER_DEPLOY_HOOK_PREPROD: ${{ secrets.RENDER_DEPLOY_HOOK_PREPROD }}
+        run: |
+          if [ -n "$RENDER_DEPLOY_HOOK_PREPROD" ]; then
+            curl -fsS -X POST "$RENDER_DEPLOY_HOOK_PREPROD"
+          else
+            echo "Secret RENDER_DEPLOY_HOOK_PREPROD no configurado; se omite deploy automático."
           fi
 
       - name: Trigger Render deploy (main)
