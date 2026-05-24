@@ -122,8 +122,11 @@ Recomendado activar:
 
 Archivos de apoyo en el repositorio:
 
+- `CONTRIBUTING.md`
 - `.github/pull_request_template.md`
 - `.github/CODEOWNERS`
+- `.github/ISSUE_TEMPLATE/bug_report.md`
+- `.github/ISSUE_TEMPLATE/feature_request.md`
 - `docs/branch-protection-github.md`
 
 ## 8) Evidencia de calidad automatizada

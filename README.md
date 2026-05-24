@@ -102,6 +102,7 @@ npm run report:e2e:steps
 - La guía para replicar la práctica con aprendices está en `docs/playwright-guia-practica.md`.
 - La guía de trabajo colaborativo con Gitflow iniciando desde QA está en `docs/gitflow-colaborativo-desde-qa.md`.
 - La guía para configurar Branch Protection está en `docs/branch-protection-github.md`.
+- La guía de contribución para equipos está en `CONTRIBUTING.md`.
 
 ### 7. Integración continua (CI) para E2E
 
