@@ -26,7 +26,7 @@ COPY models ./models
 COPY routes ./routes
 COPY utils ./utils
 COPY server.js ./
-COPY client/dist ./client/dist
+COPY --from=build /app/client/dist ./client/dist
 
 EXPOSE 3000
 CMD ["npm", "start"]
