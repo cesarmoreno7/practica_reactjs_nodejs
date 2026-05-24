@@ -1,0 +1,15 @@
+# Propietario por defecto para revisión
+* @cesarmoreno7
+
+# Flujo y automatización
+/.github/workflows/ @cesarmoreno7
+/docs/ @cesarmoreno7
+
+# API backend
+/controllers/ @cesarmoreno7
+/routes/ @cesarmoreno7
+/models/ @cesarmoreno7
+
+# Frontend
+/client/src/ @cesarmoreno7
+/tests/e2e/ @cesarmoreno7

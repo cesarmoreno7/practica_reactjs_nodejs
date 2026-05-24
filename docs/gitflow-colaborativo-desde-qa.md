@@ -120,6 +120,12 @@ Recomendado activar:
 - Require branches to be up to date before merging
 - Restrict who can push directly (ideal: nadie)
 
+Archivos de apoyo en el repositorio:
+
+- `.github/pull_request_template.md`
+- `.github/CODEOWNERS`
+- `docs/branch-protection-github.md`
+
 ## 8) Evidencia de calidad automatizada
 
 Playwright E2E corre en CI para:

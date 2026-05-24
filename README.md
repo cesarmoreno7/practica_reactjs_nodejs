@@ -101,6 +101,7 @@ npm run report:e2e:steps
 - El informe pedagógico paso a paso se genera en `playwright-report/paso-a-paso.md`.
 - La guía para replicar la práctica con aprendices está en `docs/playwright-guia-practica.md`.
 - La guía de trabajo colaborativo con Gitflow iniciando desde QA está en `docs/gitflow-colaborativo-desde-qa.md`.
+- La guía para configurar Branch Protection está en `docs/branch-protection-github.md`.
 
 ### 7. Integración continua (CI) para E2E
 
