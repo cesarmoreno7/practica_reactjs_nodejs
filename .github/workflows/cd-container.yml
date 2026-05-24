@@ -54,3 +54,25 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+
+      - name: Trigger Render deploy (preprod)
+        if: github.ref_name == 'preprod'
+        env:
+          RENDER_DEPLOY_HOOK_PREPROD: ${{ secrets.RENDER_DEPLOY_HOOK_PREPROD }}
+        run: |
+          if [ -n "$RENDER_DEPLOY_HOOK_PREPROD" ]; then
+            curl -fsS -X POST "$RENDER_DEPLOY_HOOK_PREPROD"
+          else
+            echo "Secret RENDER_DEPLOY_HOOK_PREPROD no configurado; se omite deploy automático."
+          fi
+
+      - name: Trigger Render deploy (main)
+        if: github.ref_name == 'main'
+        env:
+          RENDER_DEPLOY_HOOK_MAIN: ${{ secrets.RENDER_DEPLOY_HOOK_MAIN }}
+        run: |
+          if [ -n "$RENDER_DEPLOY_HOOK_MAIN" ]; then
+            curl -fsS -X POST "$RENDER_DEPLOY_HOOK_MAIN"
+          else
+            echo "Secret RENDER_DEPLOY_HOOK_MAIN no configurado; se omite deploy automático."
+          fi

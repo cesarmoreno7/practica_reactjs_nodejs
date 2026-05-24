@@ -158,3 +158,20 @@ Variables mínimas para ejecutar la app en contenedor:
 - `MYSQL_PASSWORD`
 - `JWT_SECRET`
 - `JWT_EXPIRES_IN=24h`
+
+## 12) Activacion de deploy automatico en Render (gratis)
+
+1. Crear cuenta en Render (plan free).
+2. Crear servicio `preprod` desde imagen GHCR:
+	- `ghcr.io/cesarmoreno7/practica_reactjs_nodejs:preprod`
+3. Crear servicio `main` desde imagen GHCR:
+	- `ghcr.io/cesarmoreno7/practica_reactjs_nodejs:latest`
+4. Configurar variables de entorno en ambos servicios.
+5. Copiar Deploy Hook URL de cada servicio (Settings -> Deploy Hook).
+6. En GitHub -> Settings -> Secrets and variables -> Actions, crear:
+	- `RENDER_DEPLOY_HOOK_PREPROD`
+	- `RENDER_DEPLOY_HOOK_MAIN`
+7. Hacer push a `preprod` y validar despliegue automático en servicio de preproducción.
+8. Promover a `main` y validar despliegue automático en servicio productivo.
+
+Nota: el workflow `.github/workflows/cd-container.yml` ya incluye el disparo automático por Deploy Hook para ambos ambientes.
