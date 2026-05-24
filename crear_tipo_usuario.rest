@@ -1,0 +1,6 @@
+### Crear un tipo de usuario
+POST http://localhost:3000/api/tipo-usuario
+Content-Type: application/json
+
+{"descripcion": "Prueba insertar"}
+

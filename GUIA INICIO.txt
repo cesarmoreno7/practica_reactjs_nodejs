@@ -1,0 +1,115 @@
+🚀 Guía Completa para Iniciar el Sistema
+He verificado que el frontend está completamente funcional. Aquí tienes la guía paso a paso para iniciar todo el sistema:
+
+📋 Requisitos Previos
+✅ Node.js: v22.18.0 (instalado)
+❌ MongoDB: Necesitas instalar y ejecutar MongoDB
+❌ npm/yarn: Para gestión de dependencias
+🗄️ 1. Instalar y Configurar MongoDB
+Opción A: MongoDB Community Server (Recomendado)
+
+# Descarga e instala desde: https://www.mongodb.com/try/download/community
+# O usando Chocolatey (Windows):
+choco install mongodb
+Opción B: MongoDB Atlas (Cloud - Más fácil)
+
+Ve a https://www.mongodb.com/atlas
+Crea cuenta gratuita
+Crea un cluster gratuito
+Obtén la connection string y actualiza .env:
+MONGODB_URI=mongodb+srv://usuario:password@cluster.mongodb.net/practica_nodejs
+Iniciar MongoDB local:
+
+# Windows (como servicio)
+net start MongoDB
+
+# O manualmente
+mongod --dbpath "C:\data\db"
+🔧 2. Configurar el Backend
+# Instalar dependencias (ya hecho)
+npm install
+
+# Verificar configuración en .env
+# El archivo ya está configurado para localhost
+MONGODB_URI=mongodb://localhost:27017/practica_nodejs
+PORT=3001
+🚀 3. Iniciar el Servidor Backend
+# Opción 1: Con nodemon (desarrollo)
+npm run dev
+
+# Opción 2: Con node (producción)
+npm start
+
+# Opción 3: Node directo
+node server.js
+El servidor debería mostrar:
+
+🚀 Servidor corriendo en puerto 3001
+📚 Documentación de la API disponible en: http://localhost:3001
+🌍 Entorno: development
+Conectado a MongoDB
+🎨 4. Resolver Problemas del Frontend
+Hay un problema con las dependencias de Vite. Para solucionarlo:
+
+# Limpiar y reinstalar dependencias del frontend
+cd client
+rmdir /s /q node_modules
+del package-lock.json
+npm install
+Si persisten problemas con Vite:
+
+# Instalar Vite globalmente
+npm install -g vite
+
+# O usar npx
+npx vite --version
+🌐 5. Iniciar la Aplicación Frontend
+cd client
+
+# Opción 1: Con npm
+npm run dev
+
+# Opción 2: Con Vite directamente
+npx vite
+
+# Opción 3: Si Vite está global
+vite
+La aplicación debería estar disponible en:
+
+Frontend: http://localhost:5173 (o puerto que indique Vite)
+Backend API: http://localhost:3001
+🧪 6. Probar la Funcionalidad
+Abrir el navegador en http://localhost:5173
+Login: Necesitas crear usuarios primero via API o base de datos
+Funcionalidades disponibles:
+Gestión completa de Tipos de Usuario (CRUD)
+Gestión completa de Usuarios (CRUD)
+Dashboard con estadísticas
+Búsqueda y filtrado avanzado
+📊 7. Crear Datos de Prueba
+Si necesitas datos iniciales, puedes usar las rutas de la API:
+
+# Crear un tipo de usuario
+curl -X POST http://localhost:3001/api/tipo-usuario \
+  -H "Content-Type: application/json" \
+  -d '{"descripcion": "Administrador"}'
+
+# Crear un usuario
+curl -X POST http://localhost:3001/api/usuario \
+  -H "Content-Type: application/json" \
+  -d '{
+    "cod_tipo_usu": 1,
+    "clave": "admin123",
+    "estado": 1,
+    "nombre": "Admin",
+    "apellido": "Sistema"
+  }'
+🔍 URLs Importantes
+Aplicación principal: http://localhost:5173
+API Backend: http://localhost:3001
+Documentación API: http://localhost:3001/
+⚠️ Notas Importantes
+El sistema usa MongoDB (no MySQL como indica el README desactualizado)
+Asegúrate de que MongoDB esté ejecutándose antes de iniciar el backend
+Si hay problemas con Vite, intenta npm install --force en el directorio client
+Los usuarios deben tener estado: 1 para poder hacer login
