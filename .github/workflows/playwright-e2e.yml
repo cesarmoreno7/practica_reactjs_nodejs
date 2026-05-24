@@ -2,9 +2,9 @@ name: Playwright E2E
 
 on:
   push:
-    branches: [ main, master, develop, qa ]
+    branches: [ main, develop, qa ]
   pull_request:
-    branches: [ main, master, develop, qa ]
+    branches: [ main, develop, qa ]
   workflow_dispatch:
 
 concurrency:
