@@ -1,0 +1,56 @@
+name: Gitflow Guard
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, edited]
+
+jobs:
+  validate-flow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate PR branch flow
+        env:
+          HEAD_REF: ${{ github.head_ref }}
+          BASE_REF: ${{ github.base_ref }}
+        run: |
+          echo "Validando flujo: ${HEAD_REF} -> ${BASE_REF}"
+
+          allowed=false
+
+          case "${BASE_REF}" in
+            develop)
+              if [[ "${HEAD_REF}" =~ ^feature/ || "${HEAD_REF}" =~ ^bugfix/ || "${HEAD_REF}" =~ ^chore/ || "${HEAD_REF}" =~ ^docs/ || "${HEAD_REF}" =~ ^refactor/ || "${HEAD_REF}" =~ ^hotfix/ ]]; then
+                allowed=true
+              fi
+              ;;
+            qa)
+              if [[ "${HEAD_REF}" == "develop" ]]; then
+                allowed=true
+              fi
+              ;;
+            preprod)
+              if [[ "${HEAD_REF}" == "qa" || "${HEAD_REF}" =~ ^release/ ]]; then
+                allowed=true
+              fi
+              ;;
+            main)
+              if [[ "${HEAD_REF}" == "preprod" || "${HEAD_REF}" =~ ^hotfix/ ]]; then
+                allowed=true
+              fi
+              ;;
+            *)
+              allowed=true
+              ;;
+          esac
+
+          if [[ "${allowed}" != "true" ]]; then
+            echo "Flujo no permitido: ${HEAD_REF} -> ${BASE_REF}"
+            echo "Reglas:"
+            echo "- feature/bugfix/chore/docs/refactor/hotfix -> develop"
+            echo "- develop -> qa"
+            echo "- qa o release/* -> preprod"
+            echo "- preprod o hotfix/* -> main"
+            exit 1
+          fi
+
+          echo "Flujo valido"

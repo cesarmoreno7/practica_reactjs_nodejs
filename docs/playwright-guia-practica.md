@@ -120,6 +120,10 @@ Comandos base del flujo:
 4. `git switch preprod && git merge --ff-only qa && git push origin preprod`
 5. `git switch main && git merge --ff-only preprod && git push origin main`
 
+Para trabajo colaborativo de varios aprendices sobre el mismo artefacto, usar la guía específica:
+
+- `docs/gitflow-colaborativo-desde-qa.md`
+
 ## 11) CD cloud sin Docker local
 
 Para construir contenedor sin Docker Desktop local:

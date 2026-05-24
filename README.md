@@ -100,6 +100,7 @@ npm run report:e2e:steps
 - El reporte visual de Playwright se genera en `playwright-report/html`.
 - El informe pedagógico paso a paso se genera en `playwright-report/paso-a-paso.md`.
 - La guía para replicar la práctica con aprendices está en `docs/playwright-guia-practica.md`.
+- La guía de trabajo colaborativo con Gitflow iniciando desde QA está en `docs/gitflow-colaborativo-desde-qa.md`.
 
 ### 7. Integración continua (CI) para E2E
 
