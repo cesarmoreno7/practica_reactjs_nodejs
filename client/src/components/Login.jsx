@@ -109,10 +109,17 @@ function Login() {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{
+                mt: 3,
+                mb: 2,
+                bgcolor: '#0b7a43',
+                '&:hover': {
+                  bgcolor: '#095f34',
+                },
+              }}
               disabled={loading}
             >
-              {loading ? <CircularProgress size={24} /> : 'Iniciar Sesión'}
+                            {loading ? <CircularProgress size={24} /> : 'Iniciar sesión'}
             </Button>
           </Box>
         </Paper>
